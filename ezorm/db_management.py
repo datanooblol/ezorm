@@ -1,22 +1,15 @@
 from ezorm.utils import remove_escape_characters
-from ezorm.utils import duck_connection
 from ezorm.utils import create_directory
-# from ezorm import DATABASE
-from typing import List, Dict, Any, Type, get_args
+from typing import List, Type, get_args
 from ezorm.variables import EzORM
-from ezorm.validation import isinstance_ezorm, issubclass_ezorm
-# from ezorm.utils import execute
+from ezorm.validation import issubclass_ezorm
 from ezorm.configuration import settings
+from ezorm.utils import data_mapping
 
 def create_tbl_query(table:Type[EzORM])->str:
     issubclass_ezorm(table)
-    data_types = {
-        str: "TEXT",    # or "TEXT" for unlimited length
-        int: "INTEGER",
-        float: "FLOAT",    # or "REAL" depending on the database
-        bool: "BOOLEAN",
-        # "datetime": "DATETIME"  # Use "TIMESTAMP" for PostgreSQL
-    }
+
+    data_types = data_mapping(engine="duck")
 
     query = []
 
