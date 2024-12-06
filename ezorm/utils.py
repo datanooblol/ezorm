@@ -2,7 +2,7 @@ import duckdb
 from contextlib import contextmanager
 import os
 import re
-from ezorm import DATABASE
+# from ezorm import DATABASE
 # Context Manager for DuckDB Connection
 @contextmanager
 def duck_connection(database:str):
@@ -23,8 +23,8 @@ def create_directory(db_path:str)->None:
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-def execute(query:str, data:list=[], response=False):
-    with duck_connection(database=DATABASE) as con:
-        records = con.execute(query, data).df()
-    if response==True:
-        return records
+# def execute(query:str, data:list=[], response=False):
+#     with duck_connection(database=DATABASE) as con:
+#         records = con.execute(query, data).df()
+#     if response==True:
+#         return records
